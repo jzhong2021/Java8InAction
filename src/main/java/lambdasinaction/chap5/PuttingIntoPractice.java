@@ -25,9 +25,13 @@ public class PuttingIntoPractice{
         
         
         // Query 1: Find all transactions from year 2011 and sort them by value (small to high).
+		System.out.println("Query 1: Find all transactions from year 2011 and sort them by value (small to high).");
         List<Transaction> tr2011 = transactions.stream()
                                                .filter(transaction -> transaction.getYear() == 2011)
-                                               .sorted(comparing(Transaction::getValue))
+                                               //.sorted(comparing(Transaction::getValue))
+                                               //.sorted((x,y)->Integer.compare(x.getValue(), y.getValue()))	//Good2 ascending
+                                               //.sorted((y,x)->Integer.compare(x.getValue(), y.getValue()))		//Good2 descending
+                                               .sorted((x,y)->Integer.compare(x.getValue(), y.getValue())*(-1))		//Good2 descending
                                                .collect(toList());
         System.out.println(tr2011);
         
